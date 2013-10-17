@@ -19,7 +19,7 @@
 		F28CEC0F180F820C0029D6D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CEBF7180F820C0029D6D9 /* UIKit.framework */; };
 		F28CEC17180F820C0029D6D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F28CEC15180F820C0029D6D9 /* InfoPlist.strings */; };
 		F28CEC19180F820C0029D6D9 /* DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F28CEC18180F820C0029D6D9 /* DemoTests.m */; };
-		F28CEC25180F82160029D6D9 /* libFNUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CEC24180F82160029D6D9 /* libFNUtils.a */; };
+		F28CEC25180F82160029D6D9 /* libFNCheckUpdate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CEC24180F82160029D6D9 /* libFNCheckUpdate.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,7 @@
 		F28CEC16180F820C0029D6D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F28CEC18180F820C0029D6D9 /* DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoTests.m; sourceTree = "<group>"; };
 		F28CEC23180F82160029D6D9 /* FNCheckUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNCheckUpdate.h; sourceTree = "<group>"; };
-		F28CEC24180F82160029D6D9 /* libFNUtils.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFNUtils.a; sourceTree = "<group>"; };
+		F28CEC24180F82160029D6D9 /* libFNCheckUpdate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFNCheckUpdate.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +61,7 @@
 				F28CEBF6180F820C0029D6D9 /* CoreGraphics.framework in Frameworks */,
 				F28CEBF8180F820C0029D6D9 /* UIKit.framework in Frameworks */,
 				F28CEBF4180F820C0029D6D9 /* Foundation.framework in Frameworks */,
-				F28CEC25180F82160029D6D9 /* libFNUtils.a in Frameworks */,
+				F28CEC25180F82160029D6D9 /* libFNCheckUpdate.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				F28CEC23180F82160029D6D9 /* FNCheckUpdate.h */,
-				F28CEC24180F82160029D6D9 /* libFNUtils.a */,
+				F28CEC24180F82160029D6D9 /* libFNCheckUpdate.a */,
 			);
 			name = include;
 			path = ../include;
@@ -468,6 +468,7 @@
 				F28CEC1E180F820C0029D6D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F28CEC1F180F820C0029D6D9 /* Build configuration list for PBXNativeTarget "DemoTests" */ = {
 			isa = XCConfigurationList;
@@ -476,6 +477,7 @@
 				F28CEC21180F820C0029D6D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
