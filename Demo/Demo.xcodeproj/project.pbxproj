@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64F82A951BD09DC800D90D5F /* FNCheckUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F82A941BD09DC800D90D5F /* FNCheckUpdate.m */; settings = {ASSET_TAGS = (); }; };
 		F28CEBF4180F820C0029D6D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CEBF3180F820C0029D6D9 /* Foundation.framework */; };
 		F28CEBF6180F820C0029D6D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CEBF5180F820C0029D6D9 /* CoreGraphics.framework */; };
 		F28CEBF8180F820C0029D6D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CEBF7180F820C0029D6D9 /* UIKit.framework */; };
@@ -19,7 +20,6 @@
 		F28CEC0F180F820C0029D6D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CEBF7180F820C0029D6D9 /* UIKit.framework */; };
 		F28CEC17180F820C0029D6D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F28CEC15180F820C0029D6D9 /* InfoPlist.strings */; };
 		F28CEC19180F820C0029D6D9 /* DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F28CEC18180F820C0029D6D9 /* DemoTests.m */; };
-		F28CEC25180F82160029D6D9 /* libFNCheckUpdate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CEC24180F82160029D6D9 /* libFNCheckUpdate.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		64F82A931BD09DC800D90D5F /* FNCheckUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNCheckUpdate.h; sourceTree = "<group>"; };
+		64F82A941BD09DC800D90D5F /* FNCheckUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNCheckUpdate.m; sourceTree = "<group>"; };
 		F28CEBF0180F820C0029D6D9 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F28CEBF3180F820C0029D6D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F28CEBF5180F820C0029D6D9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -49,8 +51,6 @@
 		F28CEC14180F820C0029D6D9 /* DemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DemoTests-Info.plist"; sourceTree = "<group>"; };
 		F28CEC16180F820C0029D6D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F28CEC18180F820C0029D6D9 /* DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoTests.m; sourceTree = "<group>"; };
-		F28CEC23180F82160029D6D9 /* FNCheckUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNCheckUpdate.h; sourceTree = "<group>"; };
-		F28CEC24180F82160029D6D9 /* libFNCheckUpdate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFNCheckUpdate.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +61,6 @@
 				F28CEBF6180F820C0029D6D9 /* CoreGraphics.framework in Frameworks */,
 				F28CEBF8180F820C0029D6D9 /* UIKit.framework in Frameworks */,
 				F28CEBF4180F820C0029D6D9 /* Foundation.framework in Frameworks */,
-				F28CEC25180F82160029D6D9 /* libFNCheckUpdate.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,8 +151,8 @@
 		F28CEC22180F82160029D6D9 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				F28CEC23180F82160029D6D9 /* FNCheckUpdate.h */,
-				F28CEC24180F82160029D6D9 /* libFNCheckUpdate.a */,
+				64F82A931BD09DC800D90D5F /* FNCheckUpdate.h */,
+				64F82A941BD09DC800D90D5F /* FNCheckUpdate.m */,
 			);
 			name = include;
 			path = ../include;
@@ -255,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F28CEC04180F820C0029D6D9 /* AppDelegate.m in Sources */,
+				64F82A951BD09DC800D90D5F /* FNCheckUpdate.m in Sources */,
 				F28CEC00180F820C0029D6D9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
