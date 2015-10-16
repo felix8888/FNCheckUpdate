@@ -81,7 +81,7 @@
 		NSString     *latestVersion = [releaseInfo objectForKey:@"version"];
 		NSString     *releaseNotes  = [releaseInfo objectForKey:@"releaseNotes"];
 		NSString     *title         = [NSString stringWithFormat:@"%@%@版本", kAPPName, latestVersion];
-		_updateURL = [[releaseInfo objectForKey:@"trackViewUrl"] retain];
+		_updateURL = [releaseInfo objectForKey:@"trackViewUrl"];
 		if ([latestVersion compare:currentVersion] == NSOrderedDescending) {
 			if (self.forceUpdate == YES) {
 				UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:releaseNotes delegate:self cancelButtonTitle:nil otherButtonTitles:@"去App Store下载", nil];
