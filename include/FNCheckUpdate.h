@@ -19,34 +19,25 @@
 /*
 canUpdate YES代表有可用更新  NO代表没有可用更新 此方法为可选方法
  */
--(void)hasNewVersion:(BOOL)canUpdate;
-
-
+- (void)hasNewVersion:(BOOL)canUpdate;
 @end
-@interface FNCheckUpdate : NSObject<UIAlertViewDelegate,NSURLConnectionDelegate,NSURLConnectionDataDelegate>
 
+@interface FNCheckUpdate : NSObject<UIAlertViewDelegate,NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 /*
  设置委托
  */
 @property (assign, nonatomic) id <FNCheckUpdateDelegate>  delegate;
-
 /*
  forceUpdate YES代表强制更新  NO 代表非强制更新
  */
 @property (assign, nonatomic) BOOL  forceUpdate;
-
-
 /*
  获取单例对象
  */
 + (FNCheckUpdate *)shareInstance;
-
-
 /*
 外部调用checkUpdateWithAppID方法来检测是否有更新版本
  appID是一串纯数字的编号 例如：656505553
  */
 - (void)checkUpdateWithAppID:(NSString*)appID;
-
-
 @end

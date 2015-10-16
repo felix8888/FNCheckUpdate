@@ -10,176 +10,106 @@
 #define kAPPName    [infoDict objectForKey:@"CFBundleDisplayName"]
 
 #import "FNCheckUpdate.h"
-@interface FNCheckUpdate ()
-{
+@interface FNCheckUpdate () {
     NSString *_updateURL;
     NSMutableData *_jsonData;
 }
 
 @end
+
 @implementation FNCheckUpdate
 @synthesize delegate;
 /*
  获取单例对象
  */
-+ (FNCheckUpdate *)shareInstance
-{
++ (FNCheckUpdate *)shareInstance {
     static FNCheckUpdate *update = nil;
-    if (!update)
-    {
+    if (!update) {
         update = [[FNCheckUpdate alloc] init];
     }
-    
     return update;
 }
-
 
 /*
  外部调用checkUpdateWithAppID方法来检测是否有更新版本
  appID是一串纯数字的编号 例如：656505553
  */
-- (void)checkUpdateWithAppID:(NSString*)appID
-{
-
-        NSString *urlStr = [NSString stringWithFormat:@"%@%@",kAPPURL, appID];
-        NSURL *url = [NSURL URLWithString:urlStr];
+- (void)checkUpdateWithAppID:(NSString*)appID {
+	NSString *urlStr = [NSString stringWithFormat:@"%@%@",kAPPURL, appID];
+	NSURL *url = [NSURL URLWithString:urlStr];
     NSURLRequest *theRequest=[NSURLRequest requestWithURL:url
                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
                                           timeoutInterval:30];
     // create the connection with the request
     // and start loading the data
     NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    if (theConnection)
-    {
+    if (theConnection) {
         [theConnection start];
     }
-    [theConnection release];
 }
 
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (self.forceUpdate==YES)
-    {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (self.forceUpdate == YES) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_updateURL]];
     }
-   else if (buttonIndex == 1)
-    {
+	else if (buttonIndex == 1) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_updateURL]];
     }
-
 }
 
 #pragma nsurlconnectiondelegate
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"%@",@"***Get new version information failed***");
-    if ([self.delegate respondsToSelector:@selector(hasNewVersion:)])
-    {
+    if ([self.delegate respondsToSelector:@selector(hasNewVersion:)]) {
         [self.delegate hasNewVersion:NO];
     }
-
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-//    NSLog(@"%@",@"");
-
-
-    if (_jsonData!=nil)
-    {
-        [_jsonData release];
-        _jsonData=nil;
-    }
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     _jsonData=[[NSMutableData alloc] init];
-    
 }
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
 
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSDictionary *infoDict   = [[NSBundle mainBundle]infoDictionary];
     NSString *currentVersion = [infoDict objectForKey:@"CFBundleVersion"];
     NSError *error;
     NSDictionary *jsonData  = [NSJSONSerialization JSONObjectWithData:_jsonData options:kNilOptions error:&error];
-//    NSLog(@"json data: %@",jsonData);
-    NSArray      *infoArray  = [jsonData objectForKey:@"results"];
+    NSArray *infoArray  = [jsonData objectForKey:@"results"];
     
-        if (infoArray.count >= 1)
-        {
-            NSDictionary *releaseInfo   = [infoArray objectAtIndex:0];
-            NSString     *latestVersion = [releaseInfo objectForKey:@"version"];
-            NSString     *releaseNotes  = [releaseInfo objectForKey:@"releaseNotes"];
-            NSString     *title         = [NSString stringWithFormat:@"%@%@版本", kAPPName, latestVersion];
-            if (_updateURL!=nil)
-            {
-                [_updateURL release];
-                _updateURL=nil;
-            }
-            _updateURL = [[releaseInfo objectForKey:@"trackViewUrl"] retain];
-
-            if ([latestVersion compare:currentVersion] == NSOrderedDescending)
-            {
-                
-                if (self.forceUpdate==YES)
-                {
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:releaseNotes delegate:self cancelButtonTitle:nil otherButtonTitles:@"去App Store下载", nil];
-                    [alertView show];
-                    [alertView release];
-                }
-                else
-                {
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:releaseNotes delegate:self cancelButtonTitle:@"忽略" otherButtonTitles:@"去App Store下载", nil];
-                    [alertView show];
-                    [alertView release];
-                }
-                
-                if ([self.delegate respondsToSelector:@selector(hasNewVersion:)])
-                {
-                    [self.delegate hasNewVersion:YES];
-                }
-
-            }
-            else
-            {
-                if ([self.delegate respondsToSelector:@selector(hasNewVersion:)])
-                {
-                    [self.delegate hasNewVersion:NO];
-                }
-            }
-        }
-        else
-        {
-            if ([self.delegate respondsToSelector:@selector(hasNewVersion:)])
-            {
-                [self.delegate hasNewVersion:NO];
-            }
-        }
-    
-
-    [_jsonData release];
+	if (infoArray.count >= 1) {
+		NSDictionary *releaseInfo   = [infoArray objectAtIndex:0];
+		NSString     *latestVersion = [releaseInfo objectForKey:@"version"];
+		NSString     *releaseNotes  = [releaseInfo objectForKey:@"releaseNotes"];
+		NSString     *title         = [NSString stringWithFormat:@"%@%@版本", kAPPName, latestVersion];
+		_updateURL = [[releaseInfo objectForKey:@"trackViewUrl"] retain];
+		if ([latestVersion compare:currentVersion] == NSOrderedDescending) {
+			if (self.forceUpdate == YES) {
+				UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:releaseNotes delegate:self cancelButtonTitle:nil otherButtonTitles:@"去App Store下载", nil];
+				[alertView show];
+			}
+			else {
+				UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:releaseNotes delegate:self cancelButtonTitle:@"忽略" otherButtonTitles:@"去App Store下载", nil];
+				[alertView show];
+			}
+			
+			if ([self.delegate respondsToSelector:@selector(hasNewVersion:)]) {
+				[self.delegate hasNewVersion:YES];
+			}
+		}
+		else {
+			if ([self.delegate respondsToSelector:@selector(hasNewVersion:)]) {
+				[self.delegate hasNewVersion:NO];
+			}
+		}
+	}
+	else if ([self.delegate respondsToSelector:@selector(hasNewVersion:)]) {
+		[self.delegate hasNewVersion:NO];
+	}
     _jsonData=nil;
-    
-
 }
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-//    NSString *string=[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-//    NSLog(@"%@",string);
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [_jsonData appendData:data];
-    
+}
 
-}
--(void)dealloc
-{
-    if (_updateURL!=nil)
-    {
-        [_updateURL release];
-        _updateURL=nil;
-    }
-    if (_jsonData!=nil)
-    {
-        [_jsonData release];
-        _jsonData=nil;
-    }    [super dealloc];
-}
 @end
